@@ -86,11 +86,14 @@ class TodoContainer extends Component {
    * page loading
    *------------------------------------*/
   componentDidMount = () => {
+    document.querySelector('#cover-spin').style.display = 'block';
     axios.get(
       'https://jsonplaceholder.typicode.com/todos?_limit=5'
     ).then(response => {
       //console.log(response);
       this.setState({todos: response.data});
+    }).then( () => {
+      document.querySelector('#cover-spin').style.display = 'none';
     }).catch(err => console.log("ERROR retrievin data", err));
   }
 
